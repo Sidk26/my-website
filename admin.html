@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel - Sidrah Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <!-- Login Card -->
+    <section id="login-section" class="login-card soft-shadow reveal">
+      <h1>Admin Login</h1>
+      <p class="subtitle">Enter your admin password to manage your portfolio.</p>
+      <form id="login-form">
+        <label class="field">
+          <span>Password</span>
+          <input type="password" id="admin-password" placeholder="Enter password" required />
+        </label>
+        <p id="login-error" class="error-text"></p>
+        <button type="submit" class="btn btn-primary full-width">Log in</button>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard-section" class="dashboard" hidden>
+      <aside class="sidebar soft-shadow">
+        <div class="sidebar-header">
+          <div class="avatar"></div>
+          <div>
+            <h2>Admin</h2>
+            <p class="muted">Portfolio Control Center</p>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-tab="personal">Personal Info</button>
+          <button class="nav-item" data-tab="projects">Projects</button>
+          <button class="nav-item" data-tab="experience">Experience</button>
+          <button class="nav-item" data-tab="certifications">Certifications</button>
+          <button class="nav-item" data-tab="cv">CV PDF & Profile Image</button>
+          <button class="nav-item" data-tab="theme">Theme, Fonts & Language</button>
+        </nav>
+        <button id="logout-btn" class="btn btn-outline full-width logout-btn">
+          Log out
+        </button>
+      </aside>
+
+      <main class="main-panel">
+        <!-- Personal Info -->
+        <section class="tab-panel tab-active" data-panel="personal">
+          <h1>Personal Info</h1>
+          <p class="muted">
+            Update your name, role and about section. These will appear on the main CV page.
+          </p>
+          <form id="personal-form" class="grid-two">
+            <label class="field">
+              <span>Full Name</span>
+              <input type="text" id="personal-name" />
+            </label>
+            <label class="field">
+              <span>Role / Headline</span>
+              <input type="text" id="personal-role" />
+            </label>
+            <label class="field full-row">
+              <span>About</span>
+              <textarea id="personal-about" rows="4"></textarea>
+            </label>
+            <label class="field">
+              <span>Phone</span>
+              <input type="text" id="personal-phone" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" id="personal-email" />
+            </label>
+            <label class="field">
+              <span>LinkedIn URL</span>
+              <input type="url" id="personal-linkedin" />
+            </label>
+            <label class="field">
+              <span>Location</span>
+              <input type="text" id="personal-location" />
+            </label>
+            <button type="submit" class="btn btn-primary full-row">Save personal info</button>
+          </form>
+        </section>
+
+        <!-- Projects -->
+        <section class="tab-panel" data-panel="projects" hidden>
+          <div class="panel-header">
+            <div>
+              <h1>Projects</h1>
+              <p class="muted">Add or remove projects shown on your portfolio.</p>
+            </div>
+            <button id="add-project-btn" class="btn btn-primary">+ Add project</button>
+          </div>
+          <div id="projects-list" class="item-list"></div>
+        </section>
+
+        <!-- Experience -->
+        <section class="tab-panel" data-panel="experience" hidden>
+          <div class="panel-header">
+            <div>
+              <h1>Experience</h1>
+              <p class="muted">Manage work experience shown on your CV.</p>
+            </div>
+            <button id="add-experience-btn" class="btn btn-primary">+ Add experience</button>
+          </div>
+          <div id="experience-list" class="item-list"></div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="tab-panel" data-panel="certifications" hidden>
+          <div class="panel-header">
+            <div>
+              <h1>Certifications</h1>
+              <p class="muted">Keep your certifications up to date.</p>
+            </div>
+            <button id="add-cert-btn" class="btn btn-primary">+ Add certification</button>
+          </div>
+          <div id="certifications-list" class="item-list"></div>
+        </section>
+
+        <!-- CV & Profile Image -->
+        <section class="tab-panel" data-panel="cv" hidden>
+          <h1>CV PDF & Profile Image</h1>
+          <p class="muted">
+            Upload a new PDF to change the “Download CV” button, and update your profile image.
+          </p>
+          <div class="grid-two">
+            <div class="panel-box">
+              <h2>CV PDF</h2>
+              <p class="muted small">
+                Default file path: <code>assets/cv-default.pdf</code>. Uploading a file here will
+                replace it in the browser (no server needed).
+              </p>
+              <label class="field">
+                <span>Current CV file name</span>
+                <input type="text" id="cv-file-name" />
+              </label>
+              <label class="field">
+                <span>Upload new CV PDF</span>
+                <input type="file" id="cv-file-input" accept="application/pdf" />
+              </label>
+              <button id="save-cv-btn" class="btn btn-primary">Save CV settings</button>
+            </div>
+            <div class="panel-box">
+              <h2>Profile Image</h2>
+              <p class="muted small">
+                You can use an image URL (for example from your hosting), or upload a local image.
+              </p>
+              <label class="field">
+                <span>Profile image URL</span>
+                <input type="url" id="profile-image-url" placeholder="https://..." />
+              </label>
+              <label class="field">
+                <span>Upload profile image</span>
+                <input type="file" id="profile-image-file" accept="image/*" />
+              </label>
+              <button id="save-profile-image-btn" class="btn btn-primary">
+                Save profile image
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Theme + Language -->
+        <section class="tab-panel" data-panel="theme" hidden>
+          <h1>Theme, Fonts & Language</h1>
+          <p class="muted">
+            Adjust colours, font and default language used on your public CV page.
+          </p>
+          <form id="theme-form" class="grid-two">
+            <label class="field">
+              <span>Theme mode</span>
+              <select id="theme-mode-admin">
+                <option value="auto">Auto (system)</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Primary colour</span>
+              <input type="color" id="theme-primary" />
+            </label>
+            <label class="field">
+              <span>Background colour</span>
+              <input type="color" id="theme-background" />
+            </label>
+            <label class="field">
+              <span>Accent colour (lines/cards)</span>
+              <input type="color" id="theme-accent" />
+            </label>
+            <label class="field">
+              <span>Font family</span>
+              <select id="theme-font">
+                <option value="'Inter', system-ui">Inter</option>
+                <option value="'Poppins', system-ui">Poppins</option>
+                <option value="system-ui">System Default</option>
+                <option value="'Segoe UI', system-ui">Segoe UI</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Default language</span>
+              <select id="default-language">
+                <option value="en">English (EN)</option>
+                <option value="hi">Hindi (HI)</option>
+                <option value="ur">Urdu (UR)</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary full-row">
+              Save theme & language
+            </button>
+          </form>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

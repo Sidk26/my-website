@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sidrah Khatib - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-fade-in">
+  <div class="page-wrapper">
+    <!-- Top Header -->
+    <header class="site-header reveal">
+      <div class="brand">
+        <div class="brand-logo-circle"></div>
+        <div class="brand-text">
+          <h1 id="user-name-display">SIDRAH KHATIB</h1>
+          <p id="user-role-display">Computer Science Student & Web Developer</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <select id="language-select" class="language-select soft-shadow">
+          <option value="en">EN</option>
+          <option value="hi">HI</option>
+          <option value="ur">UR</option>
+        </select>
+
+        <button id="download-cv-btn" class="btn btn-primary soft-shadow" data-i18n="downloadCv">
+          Download CV (PDF)
+        </button>
+
+        <button id="theme-toggle-btn" class="icon-button soft-shadow" title="Display settings">
+          ⚙
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Left Column -->
+      <section class="panel panel-main soft-shadow reveal">
+        <div class="profile-area">
+          <div class="profile-image-wrapper">
+            <img id="profile-image" src="" alt="Profile Photo" />
+          </div>
+          <div class="profile-info">
+            <p id="about-text"></p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <section class="section-block">
+          <div class="section-header">
+            <h2 data-i18n="skills">Skills</h2>
+          </div>
+          <ul id="skills-list" class="tag-list"></ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section-block">
+          <div class="section-header">
+            <h2 data-i18n="education">Education</h2>
+          </div>
+          <div id="education-list" class="timeline"></div>
+        </section>
+      </section>
+
+      <!-- Right Column -->
+      <section class="panel panel-secondary soft-shadow reveal">
+        <section class="section-block">
+          <div class="section-header">
+            <h2 data-i18n="projects">Projects</h2>
+          </div>
+          <div data-section="projects" class="cards-container"></div>
+          <div class="pagination" data-pagination="projects"></div>
+        </section>
+
+        <div class="divider subtle"></div>
+
+        <section class="section-block">
+          <div class="section-header">
+            <h2 data-i18n="experience">Experience</h2>
+          </div>
+          <div data-section="experience" class="cards-container"></div>
+          <div class="pagination" data-pagination="experience"></div>
+        </section>
+
+        <div class="divider subtle"></div>
+
+        <section class="section-block">
+          <div class="section-header">
+            <h2 data-i18n="certifications">Certifications</h2>
+          </div>
+          <div data-section="certifications" class="cards-container"></div>
+          <div class="pagination" data-pagination="certifications"></div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Contact Bar -->
+    <section class="panel panel-contact soft-shadow reveal">
+      <div class="contact-info">
+        <div>
+          <span class="contact-label" data-i18n="phoneLabel">Phone</span>
+          <span id="contact-phone"></span>
+        </div>
+        <div>
+          <span class="contact-label" data-i18n="emailLabel">Email</span>
+          <span id="contact-email"></span>
+        </div>
+        <div>
+          <span class="contact-label" data-i18n="linkedinLabel">LinkedIn</span>
+          <a id="contact-linkedin" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <a id="call-button" class="btn btn-outline soft-shadow" data-i18n="callBtn">Call</a>
+        <a id="email-button" class="btn btn-outline soft-shadow" data-i18n="emailBtn">Gmail</a>
+      </div>
+    </section>
+
+    <footer class="site-footer reveal">
+      <span>© <span id="current-year"></span> Sidrah Khatib. <span data-i18n="rights">All rights reserved.</span></span>
+    </footer>
+  </div>
+
+  <!-- Floating Theme Panel -->
+  <div id="theme-panel" class="theme-panel soft-shadow">
+    <div class="theme-panel-header">
+      <h3 data-i18n="displaySettings">Display Settings</h3>
+      <button id="theme-panel-close" class="icon-button">✕</button>
+    </div>
+    <div class="theme-panel-content">
+      <label class="field">
+        <span data-i18n="themeMode">Theme mode</span>
+        <select id="theme-mode-select">
+          <option value="auto" data-i18n="modeAuto">Auto (system)</option>
+          <option value="light" data-i18n="modeLight">Light</option>
+          <option value="dark" data-i18n="modeDark">Dark</option>
+        </select>
+      </label>
+      <label class="field">
+        <span data-i18n="primaryColor">Primary color</span>
+        <input type="color" id="primary-color-input" />
+      </label>
+      <label class="field">
+        <span data-i18n="backgroundColor">Background color</span>
+        <input type="color" id="background-color-input" />
+      </label>
+      <label class="field">
+        <span data-i18n="accentColor">Accent color (lines/cards)</span>
+        <input type="color" id="accent-color-input" />
+      </label>
+      <label class="field">
+        <span data-i18n="fontFamily">Font family</span>
+        <select id="font-family-select">
+          <option value="'Inter', system-ui">Inter</option>
+          <option value="'Poppins', system-ui">Poppins</option>
+          <option value="system-ui">System Default</option>
+          <option value="'Segoe UI', system-ui">Segoe UI</option>
+        </select>
+      </label>
+      <button id="save-theme-btn" class="btn btn-primary full-width" data-i18n="saveTheme">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
