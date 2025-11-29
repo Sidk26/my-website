@@ -2,221 +2,433 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Panel - Sidrah Portfolio</title>
+  <title>Admin – CV Manager</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-  <div class="admin-shell">
-    <!-- Login Card -->
-    <section id="login-section" class="login-card soft-shadow reveal">
+  <div class="admin-bg"></div>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen screen-login">
+    <div class="login-card">
+      <div class="login-logo">SK</div>
       <h1>Admin Login</h1>
-      <p class="subtitle">Enter your admin password to manage your portfolio.</p>
-      <form id="login-form">
+      <p class="login-subtitle">
+        Enter your admin password to manage your CV website.
+      </p>
+      <form id="login-form" class="login-form">
         <label class="field">
           <span>Password</span>
-          <input type="password" id="admin-password" placeholder="Enter password" required />
+          <input id="admin-password" type="password" autocomplete="current-password" required />
         </label>
+        <button type="submit" class="btn-primary full">Login</button>
         <p id="login-error" class="error-text"></p>
-        <button type="submit" class="btn btn-primary full-width">Log in</button>
       </form>
-    </section>
+      <p class="login-hint">
+        Keep this page URL secret. There is no link from the public site.
+      </p>
+    </div>
+  </div>
 
-    <!-- Dashboard -->
-    <section id="dashboard-section" class="dashboard" hidden>
-      <aside class="sidebar soft-shadow">
-        <div class="sidebar-header">
-          <div class="avatar"></div>
-          <div>
-            <h2>Admin</h2>
-            <p class="muted">Portfolio Control Center</p>
-          </div>
+  <!-- ADMIN SCREEN -->
+  <div id="admin-screen" class="screen screen-admin hidden">
+    <header class="admin-header">
+      <div class="admin-brand">
+        <div class="admin-avatar">SK</div>
+        <div>
+          <div class="admin-title">CV Control Center</div>
+          <div class="admin-subtitle">Edit content, theme, fonts, and PDF.</div>
         </div>
-        <nav class="sidebar-nav">
-          <button class="nav-item active" data-tab="personal">Personal Info</button>
-          <button class="nav-item" data-tab="projects">Projects</button>
-          <button class="nav-item" data-tab="experience">Experience</button>
-          <button class="nav-item" data-tab="certifications">Certifications</button>
-          <button class="nav-item" data-tab="cv">CV PDF & Profile Image</button>
-          <button class="nav-item" data-tab="theme">Theme, Fonts & Language</button>
-        </nav>
-        <button id="logout-btn" class="btn btn-outline full-width logout-btn">
-          Log out
-        </button>
+      </div>
+      <button id="logout-btn" class="btn-ghost small">Log out</button>
+    </header>
+
+    <main class="admin-main">
+      <aside class="admin-sidebar">
+        <button class="sidebar-item active" data-panel="panel-profile">Profile</button>
+        <button class="sidebar-item" data-panel="panel-about">About</button>
+        <button class="sidebar-item" data-panel="panel-skills">Skills & Languages</button>
+        <button class="sidebar-item" data-panel="panel-projects">Projects</button>
+        <button class="sidebar-item" data-panel="panel-experience">Experience</button>
+        <button class="sidebar-item" data-panel="panel-education">Education</button>
+        <button class="sidebar-item" data-panel="panel-certifications">Certifications</button>
+        <button class="sidebar-item" data-panel="panel-theme">Theme & Fonts</button>
+        <button class="sidebar-item" data-panel="panel-contact">Contact & PDF</button>
       </aside>
 
-      <main class="main-panel">
-        <!-- Personal Info -->
-        <section class="tab-panel tab-active" data-panel="personal">
-          <h1>Personal Info</h1>
-          <p class="muted">
-            Update your name, role and about section. These will appear on the main CV page.
+      <section class="admin-content">
+        <!-- PROFILE -->
+        <div id="panel-profile" class="panel active">
+          <h2>Profile</h2>
+          <p class="panel-description">
+            Edit your name, title, summary, location, and profile image.
           </p>
-          <form id="personal-form" class="grid-two">
-            <label class="field">
-              <span>Full Name</span>
-              <input type="text" id="personal-name" />
-            </label>
-            <label class="field">
-              <span>Role / Headline</span>
-              <input type="text" id="personal-role" />
-            </label>
-            <label class="field full-row">
-              <span>About</span>
-              <textarea id="personal-about" rows="4"></textarea>
-            </label>
-            <label class="field">
-              <span>Phone</span>
-              <input type="text" id="personal-phone" />
-            </label>
-            <label class="field">
-              <span>Email</span>
-              <input type="email" id="personal-email" />
-            </label>
-            <label class="field">
-              <span>LinkedIn URL</span>
-              <input type="url" id="personal-linkedin" />
-            </label>
-            <label class="field">
-              <span>Location</span>
-              <input type="text" id="personal-location" />
-            </label>
-            <button type="submit" class="btn btn-primary full-row">Save personal info</button>
-          </form>
-        </section>
-
-        <!-- Projects -->
-        <section class="tab-panel" data-panel="projects" hidden>
-          <div class="panel-header">
+          <div class="grid-2">
             <div>
-              <h1>Projects</h1>
-              <p class="muted">Add or remove projects shown on your portfolio.</p>
+              <label class="field">
+                <span>Full name</span>
+                <input id="profile-name" type="text" />
+              </label>
+              <label class="field">
+                <span>Role / Title</span>
+                <input id="profile-title" type="text" />
+              </label>
+              <label class="field">
+                <span>Location line</span>
+                <input id="profile-location" type="text" />
+              </label>
             </div>
-            <button id="add-project-btn" class="btn btn-primary">+ Add project</button>
-          </div>
-          <div id="projects-list" class="item-list"></div>
-        </section>
-
-        <!-- Experience -->
-        <section class="tab-panel" data-panel="experience" hidden>
-          <div class="panel-header">
             <div>
-              <h1>Experience</h1>
-              <p class="muted">Manage work experience shown on your CV.</p>
+              <label class="field">
+                <span>Summary (hero & about highlight)</span>
+                <textarea id="profile-summary" rows="6"></textarea>
+              </label>
             </div>
-            <button id="add-experience-btn" class="btn btn-primary">+ Add experience</button>
           </div>
-          <div id="experience-list" class="item-list"></div>
-        </section>
-
-        <!-- Certifications -->
-        <section class="tab-panel" data-panel="certifications" hidden>
-          <div class="panel-header">
-            <div>
-              <h1>Certifications</h1>
-              <p class="muted">Keep your certifications up to date.</p>
-            </div>
-            <button id="add-cert-btn" class="btn btn-primary">+ Add certification</button>
+          <div class="grid-2">
+            <label class="field">
+              <span>Profile image URL (optional)</span>
+              <input id="profile-image-url" type="url" placeholder="https://..." />
+            </label>
+            <label class="field">
+              <span>Highlights (one per line)</span>
+              <textarea id="profile-highlights" rows="4"></textarea>
+            </label>
           </div>
-          <div id="certifications-list" class="item-list"></div>
-        </section>
 
-        <!-- CV & Profile Image -->
-        <section class="tab-panel" data-panel="cv" hidden>
-          <h1>CV PDF & Profile Image</h1>
-          <p class="muted">
-            Upload a new PDF to change the “Download CV” button, and update your profile image.
-          </p>
-          <div class="grid-two">
-            <div class="panel-box">
-              <h2>CV PDF</h2>
-              <p class="muted small">
-                Default file path: <code>assets/cv-default.pdf</code>. Uploading a file here will
-                replace it in the browser (no server needed).
+          <!-- PROFILE UPLOAD -->
+          <div class="upload-block">
+            <label class="field">
+              <span>Profile photo upload (optional)</span>
+            </label>
+            <div class="upload-card">
+              <div
+                id="profile-upload-dropzone"
+                class="upload-dropzone"
+                data-section="profile"
+              >
+                <p class="upload-title">Drag & drop a profile photo here</p>
+                <p class="upload-subtitle">or click to browse</p>
+                <input
+                  id="profile-upload-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                />
+              </div>
+              <div id="profile-upload-list" class="upload-thumbs"></div>
+              <p class="upload-hint">
+                This image will override the profile image URL when present.
               </p>
-              <label class="field">
-                <span>Current CV file name</span>
-                <input type="text" id="cv-file-name" />
-              </label>
-              <label class="field">
-                <span>Upload new CV PDF</span>
-                <input type="file" id="cv-file-input" accept="application/pdf" />
-              </label>
-              <button id="save-cv-btn" class="btn btn-primary">Save CV settings</button>
-            </div>
-            <div class="panel-box">
-              <h2>Profile Image</h2>
-              <p class="muted small">
-                You can use an image URL (for example from your hosting), or upload a local image.
-              </p>
-              <label class="field">
-                <span>Profile image URL</span>
-                <input type="url" id="profile-image-url" placeholder="https://..." />
-              </label>
-              <label class="field">
-                <span>Upload profile image</span>
-                <input type="file" id="profile-image-file" accept="image/*" />
-              </label>
-              <button id="save-profile-image-btn" class="btn btn-primary">
-                Save profile image
-              </button>
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Theme + Language -->
-        <section class="tab-panel" data-panel="theme" hidden>
-          <h1>Theme, Fonts & Language</h1>
-          <p class="muted">
-            Adjust colours, font and default language used on your public CV page.
+        <!-- ABOUT -->
+        <div id="panel-about" class="panel">
+          <h2>About</h2>
+          <p class="panel-description">
+            This text appears in the “About Me” section.
           </p>
-          <form id="theme-form" class="grid-two">
+          <label class="field">
+            <span>About me</span>
+            <textarea id="about-text-input" rows="10"></textarea>
+          </label>
+        </div>
+
+        <!-- SKILLS & LANGUAGES -->
+        <div id="panel-skills" class="panel">
+          <h2>Skills & Languages</h2>
+          <div class="grid-2">
             <label class="field">
-              <span>Theme mode</span>
-              <select id="theme-mode-admin">
-                <option value="auto">Auto (system)</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </select>
+              <span>Skills (comma separated)</span>
+              <textarea id="skills-input" rows="8" placeholder="Python, Java, HTML & CSS, ..."></textarea>
             </label>
             <label class="field">
-              <span>Primary colour</span>
-              <input type="color" id="theme-primary" />
+              <span>Languages (comma separated)</span>
+              <textarea id="languages-input" rows="8" placeholder="English, Marathi, Hindi"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div id="panel-projects" class="panel">
+          <h2>Projects</h2>
+          <p class="panel-description">
+            One project per line. Use this pattern:<br />
+            <code>Title - Short description | Subtitle (optional) | Image URL (optional) | Link (optional)</code>
+          </p>
+          <label class="field">
+            <span>Projects</span>
+            <textarea
+              id="projects-input"
+              rows="10"
+              placeholder="IoT RFID Attendance System - Built an RFID-based attendance system... | NodeMCU + Google Sheets | https://image-url | https://project-link"
+            ></textarea>
+          </label>
+
+          <!-- PROJECTS UPLOAD -->
+          <div class="upload-block">
+            <label class="field">
+              <span>Project images / documents (screenshots, diagrams, etc.)</span>
+            </label>
+            <div class="upload-card">
+              <div
+                id="projects-upload-dropzone"
+                class="upload-dropzone"
+                data-section="projects"
+              >
+                <p class="upload-title">Drag & drop project images here</p>
+                <p class="upload-subtitle">or click to browse</p>
+                <input
+                  id="projects-upload-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                />
+              </div>
+              <div id="projects-upload-list" class="upload-thumbs"></div>
+              <p class="upload-hint">
+                You can upload multiple images. They are stored locally in your browser.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div id="panel-experience" class="panel">
+          <h2>Experience</h2>
+          <p class="panel-description">
+            One experience per line:<br />
+            <code>Role @ Company - Description | Dates | Image URL (optional)</code>
+          </p>
+          <label class="field">
+            <span>Experience</span>
+            <textarea
+              id="experience-input"
+              rows="10"
+              placeholder="On-Campus IT Assistant @ Kauchali Enterprises - Supported students and staff... | Aug 2025 – Nov 2025 | https://image-url"
+            ></textarea>
+          </label>
+
+          <!-- EXPERIENCE UPLOAD -->
+          <div class="upload-block">
+            <label class="field">
+              <span>Experience documents (offer letters, experience letters, etc.)</span>
+            </label>
+            <div class="upload-card">
+              <div
+                id="experience-upload-dropzone"
+                class="upload-dropzone"
+                data-section="experience"
+              >
+                <p class="upload-title">Drag & drop experience documents here</p>
+                <p class="upload-subtitle">or click to browse</p>
+                <input
+                  id="experience-upload-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                />
+              </div>
+              <div id="experience-upload-list" class="upload-thumbs"></div>
+              <p class="upload-hint">
+                Upload scanned copies as images (JPG/PNG).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div id="panel-education" class="panel">
+          <h2>Education</h2>
+          <p class="panel-description">
+            One education per line:<br />
+            <code>Degree - Institution | Dates | Extra details (CGPA etc)</code>
+          </p>
+          <label class="field">
+            <span>Education</span>
+            <textarea
+              id="education-input"
+              rows="8"
+              placeholder="B.Sc. in Computer Science - L.G.M A.C.S College, Mandangad · University of Mumbai | 2022 – 2025 | CGPA: 9.2/10"
+            ></textarea>
+          </label>
+
+          <!-- EDUCATION UPLOAD -->
+          <div class="upload-block">
+            <label class="field">
+              <span>Education documents (marksheets, degree, etc.)</span>
+            </label>
+            <div class="upload-card">
+              <div
+                id="education-upload-dropzone"
+                class="upload-dropzone"
+                data-section="education"
+              >
+                <p class="upload-title">Drag & drop education documents here</p>
+                <p class="upload-subtitle">or click to browse</p>
+                <input
+                  id="education-upload-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                />
+              </div>
+              <div id="education-upload-list" class="upload-thumbs"></div>
+              <p class="upload-hint">
+                Multiple images supported. Everything stays in your browser.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATIONS -->
+        <div id="panel-certifications" class="panel">
+          <h2>Certifications</h2>
+          <p class="panel-description">
+            One certification per line.
+          </p>
+          <label class="field">
+            <span>Certifications</span>
+            <textarea
+              id="certifications-input"
+              rows="8"
+              placeholder="Google: Foundations of Cybersecurity&#10;MySQL with Information Technology (Coursera)"
+            ></textarea>
+          </label>
+
+          <!-- CERTIFICATIONS UPLOAD -->
+          <div class="upload-block">
+            <label class="field">
+              <span>Certification images (certificates, badges, etc.)</span>
+            </label>
+            <div class="upload-card">
+              <div
+                id="certifications-upload-dropzone"
+                class="upload-dropzone"
+                data-section="certifications"
+              >
+                <p class="upload-title">Drag & drop certificates here</p>
+                <p class="upload-subtitle">or click to browse</p>
+                <input
+                  id="certifications-upload-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                />
+              </div>
+              <div id="certifications-upload-list" class="upload-thumbs"></div>
+              <p class="upload-hint">
+                Perfect for uploading scans of your certificates as images.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- THEME & FONTS -->
+        <div id="panel-theme" class="panel">
+          <h2>Theme & Fonts</h2>
+          <p class="panel-description">
+            Change pastel colors, font family, and font colors. This updates both desktop and mobile view.
+          </p>
+          <div class="grid-3">
+            <label class="field">
+              <span>Primary color</span>
+              <input id="theme-primary" type="color" />
             </label>
             <label class="field">
-              <span>Background colour</span>
-              <input type="color" id="theme-background" />
+              <span>Accent color</span>
+              <input id="theme-accent" type="color" />
             </label>
             <label class="field">
-              <span>Accent colour (lines/cards)</span>
-              <input type="color" id="theme-accent" />
+              <span>Background color</span>
+              <input id="theme-background" type="color" />
+            </label>
+          </div>
+          <div class="grid-3">
+            <label class="field">
+              <span>Text color</span>
+              <input id="theme-text" type="color" />
+            </label>
+            <label class="field">
+              <span>Heading color</span>
+              <input id="theme-heading" type="color" />
             </label>
             <label class="field">
               <span>Font family</span>
               <select id="theme-font">
-                <option value="'Inter', system-ui">Inter</option>
-                <option value="'Poppins', system-ui">Poppins</option>
-                <option value="system-ui">System Default</option>
-                <option value="'Segoe UI', system-ui">Segoe UI</option>
+                <option value='"Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif'>
+                  Poppins (default)
+                </option>
+                <option value='"Playfair Display", "Times New Roman", serif'>
+                  Playfair Display
+                </option>
+                <option value='system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+                  System (Apple/Tesla style)
+                </option>
               </select>
             </label>
-            <label class="field">
-              <span>Default language</span>
-              <select id="default-language">
-                <option value="en">English (EN)</option>
-                <option value="hi">Hindi (HI)</option>
-                <option value="ur">Urdu (UR)</option>
-              </select>
-            </label>
-            <button type="submit" class="btn btn-primary full-row">
-              Save theme & language
-            </button>
-          </form>
-        </section>
-      </main>
-    </section>
+          </div>
+        </div>
+
+        <!-- CONTACT & PDF -->
+        <div id="panel-contact" class="panel">
+          <h2>Contact & PDF</h2>
+          <p class="panel-description">
+            Set phone, Gmail, LinkedIn, and the CV PDF download link.
+          </p>
+          <div class="grid-2">
+            <div>
+              <label class="field">
+                <span>Phone</span>
+                <input id="contact-phone-input" type="text" />
+              </label>
+              <label class="field">
+                <span>Email (Gmail)</span>
+                <input id="contact-email-input" type="email" />
+              </label>
+              <label class="field">
+                <span>LinkedIn URL</span>
+                <input id="contact-linkedin-input" type="url" />
+              </label>
+            </div>
+            <div>
+              <label class="field">
+                <span>CV PDF URL or file name</span>
+                <input
+                  id="pdf-url-input"
+                  type="text"
+                  placeholder="Sidrah_Khatib_CV.pdf or https://..."
+                />
+              </label>
+              <p class="panel-note">
+                Hint: upload your PDF to the same folder and put the exact file name (e.g.
+                <strong>Sidrah_Khatib_CV.pdf</strong>). The “Download CV” button on the user site
+                will use this.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <button id="save-btn" class="btn-primary">Save changes</button>
+          <span id="save-status" class="save-status"></span>
+        </div>
+      </section>
+    </main>
   </div>
 
   <script src="admin.js"></script>
